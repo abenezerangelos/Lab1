@@ -19,3 +19,8 @@ td {
 .time {
   height: 40px;
 }
+@import './index.scss';
+
+/* Event visual styling moved to `index.scss`. Use `props.color` in the
+   component to set `--event-bg` as an inline style (any valid CSS color).
+   Example in JSX: <Event color="#b3d1ff" ... /> */

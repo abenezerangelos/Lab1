@@ -1,0 +1,41 @@
+.Event {
+    // Mixin to lighten a given color
+    @mixin event-color($color) {
+        background-color: lighten($color, 50%);
+        border: 1px solid lighten($color, 15%);
+        color: darken($color, 40%);
+    }
+
+    // Usage example:
+    // &.custom-color {
+    //   @include event-color(#3498db);
+    // }
+}
+
+/* Base styles for Event components. The background uses the CSS custom
+     property --event-bg supplied by the component inline style. If not
+     provided, fall back to a light gray. */
+.Event {
+        /* Compute a lighter background from the passed color using color-mix
+             (supported in modern browsers). We mix the provided color with white
+             to get a lighter variant while preserving the hue. If color-mix is
+             not available, fall back to using the raw variable directly.
+             You can pass `--event-bg` with any valid CSS color (hex, rgb, named).
+        */
+        background-color: var(--event-bg, #e8e8e8);
+        /* If browser supports color-mix, override background with a lighter mix */
+        @supports (color: color-mix(in srgb , white 100%, white)) {
+            background-color: color-mix(in srgb, var(--event-bg) 20%, white);
+        }
+        border: 1px solid rgba(0,0,0,0.12);
+    border-radius: 10px;
+    padding: 8px;
+    margin: 6px;
+    text-align: center;
+    color: var(--event-fg, #111);
+}
+
+/* Helper class if you still want to use semantic colors in CSS */
+.Event--muted {
+    opacity: 0.9;
+}
