@@ -1,33 +1,19 @@
+/* Base styles for Event components. The background uses the CSS custom
+     property `--event-bg` supplied by the component inline style. If not
+     provided, fall back to a light gray. Color math is performed with
+     `color-mix` where supported so the component only needs to expose the
+     raw color. */
 .Event {
-    // Mixin to lighten a given color
-    @mixin event-color($color) {
-        background-color: lighten($color, 50%);
-        border: 1px solid lighten($color, 15%);
-        color: darken($color, 40%);
+    background-color: var(--event-bg, #e8e8e8);
+
+    /* If browser supports color-mix, produce a lighter background by mixing
+         the passed color with white. Increase the white proportion to 65% to
+         get a noticeably lighter result for saturated blues and similar hues. */
+    @supports (color: color-mix(in srgb, white 100%, white)) {
+        background-color: color-mix(in srgb, var(--event-bg) 65%, white);
     }
 
-    // Usage example:
-    // &.custom-color {
-    //   @include event-color(#3498db);
-    // }
-}
-
-/* Base styles for Event components. The background uses the CSS custom
-     property --event-bg supplied by the component inline style. If not
-     provided, fall back to a light gray. */
-.Event {
-        /* Compute a lighter background from the passed color using color-mix
-             (supported in modern browsers). We mix the provided color with white
-             to get a lighter variant while preserving the hue. If color-mix is
-             not available, fall back to using the raw variable directly.
-             You can pass `--event-bg` with any valid CSS color (hex, rgb, named).
-        */
-        background-color: var(--event-bg, #e8e8e8);
-        /* If browser supports color-mix, override background with a lighter mix */
-        @supports (color: color-mix(in srgb , white 100%, white)) {
-            background-color: color-mix(in srgb, var(--event-bg) 20%, white);
-        }
-        border: 1px solid rgba(0,0,0,0.12);
+    border: 1px solid rgba(0, 0, 0, 0.12);
     border-radius: 10px;
     padding: 8px;
     margin: 6px;
