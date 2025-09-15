@@ -90,7 +90,7 @@ const Calendar = () => {
             <td className="event"></td>
             <td className="event"><Event event="Art Institute 🖼️" time="2:00pm" location="Art Institute" color="#bfd8e6" /></td>
             <td className="event"></td>
-            <td className="event"><Event event="Girl & the Goat" time="2:00pm" location="West Loop" color="#cfeedc" /></td>
+            
             <td className="event"></td>
             <td className="event"></td>
           </tr>
